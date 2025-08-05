@@ -26,3 +26,5 @@ require (
 )
 
 replace github.com/Gabo-div/bingo/packages/protobuf v0.0.0 => ../../packages/protobuf
+
+replace github.com/Gabo-div/bingo/packages/database v0.0.0 => ../../packages/database

@@ -1,15 +1,17 @@
 import { betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "./src/db/index";
 import { jwt } from "better-auth/plugins";
-import * as schema from "./src/db/schema";
+import { Pool } from "pg";
+import { env } from "./env";
+import { admin } from "better-auth/plugins";
 
 export const auth = betterAuth({
-  plugins: [jwt()],
-  database: drizzleAdapter(db, {
-    provider: "sqlite",
-    schema: schema,
+  plugins: [jwt(), admin()],
+  database: new Pool({
+    connectionString: env.DATABASE_URL,
   }),
+  advanced: {
+    generateId: false,
+  },
   emailAndPassword: {
     enabled: true,
   },
