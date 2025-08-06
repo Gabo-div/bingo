@@ -14,6 +14,10 @@ type User struct {
 	Name          string
 	Email         string
 	EmailVerified bool
+	Role          string
+	Banned        bool
+	BanReason     string
+	BanExpires    string
 	Image         string
 	CreatedAt     string
 	UpdatedAt     string
@@ -47,6 +51,18 @@ func UserFromHeader(ctx context.Context, header http.Header) (User, error) {
 	var emailVerified bool
 	token.Get("emailVerified", &emailVerified)
 
+	var role string
+	token.Get("role", &role)
+
+	var banned bool
+	token.Get("banned", &banned)
+
+	var banReason string
+	token.Get("banReason", &banReason)
+
+	var banExpires string
+	token.Get("banExpires", &banExpires)
+
 	var image string
 	token.Get("image", &image)
 
@@ -61,6 +77,10 @@ func UserFromHeader(ctx context.Context, header http.Header) (User, error) {
 		Name:          name,
 		Email:         email,
 		EmailVerified: emailVerified,
+		Role:          role,
+		Banned:        banned,
+		BanReason:     banReason,
+		BanExpires:    banExpires,
 		Image:         image,
 		CreatedAt:     createdAt,
 		UpdatedAt:     updatedAt,

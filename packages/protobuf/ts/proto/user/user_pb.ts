@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/user/user.proto.
  */
 export const file_proto_user_user: GenFile = /*@__PURE__*/
-  fileDesc("ChVwcm90by91c2VyL3VzZXIucHJvdG8SBHVzZXIiBwoFRW1wdHkiewoEVXNlchIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEg0KBWVtYWlsGAMgASgJEhUKDWVtYWlsVmVyaWZpZWQYBSABKAgSDQoFaW1hZ2UYBiABKAkSEQoJY3JlYXRlZEF0GAcgASgJEhEKCXVwZGF0ZWRBdBgIIAEoCTIxCgtVc2VyU2VydmljZRIiCgdHZXRVc2VyEgsudXNlci5FbXB0eRoKLnVzZXIuVXNlckJAWj5naXRodWIuY29tL0dhYm8tZGl2L2JpbmdvL3BhY2thZ2VzL3Byb3RvYnVmL2dvL3Byb3RvL3VzZXI7dXNlcmIGcHJvdG8z");
+  fileDesc("ChVwcm90by91c2VyL3VzZXIucHJvdG8SBHVzZXIiBwoFRW1wdHkiwAEKBFVzZXISCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRINCgVlbWFpbBgDIAEoCRIVCg1lbWFpbFZlcmlmaWVkGAQgASgIEgwKBHJvbGUYBSABKAkSDgoGYmFubmVkGAYgASgIEhEKCWJhblJlYXNvbhgHIAEoCRISCgpiYW5FeHBpcmVzGAggASgJEg0KBWltYWdlGAkgASgJEhEKCWNyZWF0ZWRBdBgKIAEoCRIRCgl1cGRhdGVkQXQYCyABKAkyMQoLVXNlclNlcnZpY2USIgoHR2V0VXNlchILLnVzZXIuRW1wdHkaCi51c2VyLlVzZXJCQFo+Z2l0aHViLmNvbS9HYWJvLWRpdi9iaW5nby9wYWNrYWdlcy9wcm90b2J1Zi9nby9wcm90by91c2VyO3VzZXJiBnByb3RvMw");
 
 /**
  * @generated from message user.Empty
@@ -45,22 +45,42 @@ export type User = Message<"user.User"> & {
   email: string;
 
   /**
-   * @generated from field: bool emailVerified = 5;
+   * @generated from field: bool emailVerified = 4;
    */
   emailVerified: boolean;
 
   /**
-   * @generated from field: string image = 6;
+   * @generated from field: string role = 5;
+   */
+  role: string;
+
+  /**
+   * @generated from field: bool banned = 6;
+   */
+  banned: boolean;
+
+  /**
+   * @generated from field: string banReason = 7;
+   */
+  banReason: string;
+
+  /**
+   * @generated from field: string banExpires = 8;
+   */
+  banExpires: string;
+
+  /**
+   * @generated from field: string image = 9;
    */
   image: string;
 
   /**
-   * @generated from field: string createdAt = 7;
+   * @generated from field: string createdAt = 10;
    */
   createdAt: string;
 
   /**
-   * @generated from field: string updatedAt = 8;
+   * @generated from field: string updatedAt = 11;
    */
   updatedAt: string;
 };
