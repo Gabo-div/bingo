@@ -1,10 +1,12 @@
 {
-  "name": "@repo/auth",
+  "name": "@repo/database",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "migration:create": "./migrate.sh create",
+    "migration:up": "./migrate.sh up",
+    "migration:down": "./migrate.sh down",
+    "migration:status": "./migrate.sh status",
+    "generate": "sqlc generate"
   },
   "dependencies": {
     "@hono/node-server": "^1.18.0",

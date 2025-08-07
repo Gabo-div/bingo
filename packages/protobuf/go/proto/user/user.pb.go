@@ -62,10 +62,14 @@ type User struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
-	EmailVerified bool                   `protobuf:"varint,5,opt,name=emailVerified,proto3" json:"emailVerified,omitempty"`
-	Image         string                 `protobuf:"bytes,6,opt,name=image,proto3" json:"image,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,7,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,8,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
+	EmailVerified bool                   `protobuf:"varint,4,opt,name=emailVerified,proto3" json:"emailVerified,omitempty"`
+	Role          string                 `protobuf:"bytes,5,opt,name=role,proto3" json:"role,omitempty"`
+	Banned        bool                   `protobuf:"varint,6,opt,name=banned,proto3" json:"banned,omitempty"`
+	BanReason     string                 `protobuf:"bytes,7,opt,name=banReason,proto3" json:"banReason,omitempty"`
+	BanExpires    string                 `protobuf:"bytes,8,opt,name=banExpires,proto3" json:"banExpires,omitempty"`
+	Image         string                 `protobuf:"bytes,9,opt,name=image,proto3" json:"image,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,10,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,11,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -128,6 +132,34 @@ func (x *User) GetEmailVerified() bool {
 	return false
 }
 
+func (x *User) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+func (x *User) GetBanned() bool {
+	if x != nil {
+		return x.Banned
+	}
+	return false
+}
+
+func (x *User) GetBanReason() string {
+	if x != nil {
+		return x.BanReason
+	}
+	return ""
+}
+
+func (x *User) GetBanExpires() string {
+	if x != nil {
+		return x.BanExpires
+	}
+	return ""
+}
+
 func (x *User) GetImage() string {
 	if x != nil {
 		return x.Image
@@ -154,15 +186,22 @@ var File_proto_user_user_proto protoreflect.FileDescriptor
 const file_proto_user_user_proto_rawDesc = "" +
 	"\n" +
 	"\x15proto/user/user.proto\x12\x04user\"\a\n" +
-	"\x05Empty\"\xb8\x01\n" +
+	"\x05Empty\"\xa2\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05email\x18\x03 \x01(\tR\x05email\x12$\n" +
-	"\remailVerified\x18\x05 \x01(\bR\remailVerified\x12\x14\n" +
-	"\x05image\x18\x06 \x01(\tR\x05image\x12\x1c\n" +
-	"\tcreatedAt\x18\a \x01(\tR\tcreatedAt\x12\x1c\n" +
-	"\tupdatedAt\x18\b \x01(\tR\tupdatedAt21\n" +
+	"\remailVerified\x18\x04 \x01(\bR\remailVerified\x12\x12\n" +
+	"\x04role\x18\x05 \x01(\tR\x04role\x12\x16\n" +
+	"\x06banned\x18\x06 \x01(\bR\x06banned\x12\x1c\n" +
+	"\tbanReason\x18\a \x01(\tR\tbanReason\x12\x1e\n" +
+	"\n" +
+	"banExpires\x18\b \x01(\tR\n" +
+	"banExpires\x12\x14\n" +
+	"\x05image\x18\t \x01(\tR\x05image\x12\x1c\n" +
+	"\tcreatedAt\x18\n" +
+	" \x01(\tR\tcreatedAt\x12\x1c\n" +
+	"\tupdatedAt\x18\v \x01(\tR\tupdatedAt21\n" +
 	"\vUserService\x12\"\n" +
 	"\aGetUser\x12\v.user.Empty\x1a\n" +
 	".user.UserB@Z>github.com/Gabo-div/bingo/packages/protobuf/go/proto/user;userb\x06proto3"
