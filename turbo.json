@@ -1,7 +1,6 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
-  "globalDependencies": [".env"], // All task hashes
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -18,6 +17,6 @@
       "cache": false,
       "persistent": true
     },
-    "db:push": {}
+    "prep": {}
   }
 }

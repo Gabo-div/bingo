@@ -2,11 +2,9 @@
   "name": "bingo",
   "private": true,
   "scripts": {
-    "env": "./env-cpy.sh",
-    "prep": "pnpm run --prefix ./apps/server prep",
+    "prep": "turbo run prep",
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "db:push": "turbo run db:push",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"

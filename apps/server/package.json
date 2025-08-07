@@ -4,8 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "air",
-    "prep": "go mod tidy",
-    "db:push": "echo 'pushing'"
+    "prep": "go mod tidy"
   },
   "keywords": [],
   "author": "",

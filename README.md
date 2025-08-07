@@ -13,7 +13,7 @@ Es necesario tener instalado
 pnpm i # Obtener dependencias del proyecto
 pnpm run prep # Obtener dependencias del server en Go
 
-pnpm run db:push # Crear las bases de datos
+./env-cpy.sh # Establecer los archivos `.env` de prueba necesarios
 ```
 
 ### Ejecucion
