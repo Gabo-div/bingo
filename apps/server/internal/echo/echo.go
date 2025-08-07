@@ -1,8 +1,9 @@
 package echo
 
 import (
-	"connectrpc.com/connect"
 	"context"
+
+	"connectrpc.com/connect"
 	echo "github.com/Gabo-div/bingo/packages/protobuf/go/proto/echo"
 	"github.com/Gabo-div/bingo/packages/protobuf/go/proto/echo/echoconnect"
 	"github.com/go-chi/chi/v5"
