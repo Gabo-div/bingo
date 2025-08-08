@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "air"
+    "dev": "air",
+    "test": "go test ./...",
+    "bench": "go test -bench=. -benchmem ./..."
   },
   "keywords": [],
   "author": "",
