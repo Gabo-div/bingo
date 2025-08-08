@@ -6,16 +6,14 @@ import (
 	"time"
 )
 
-func GenerateBoard(seed int64) [][]int {
-	var source rand.Source
+func GenerateBoard(seed int64) ([][]int, int64) {
+	finalSeed := seed
 
 	if seed == 0 {
-		source = rand.NewSource(time.Now().UnixNano())
-	} else {
-		source = rand.NewSource(seed)
+		seed = time.Now().UnixNano()
 	}
 
-	r := rand.New(source)
+	r := rand.New(rand.NewSource(finalSeed))
 
 	columnsRanges := map[string]struct {
 		start int
@@ -63,7 +61,7 @@ func GenerateBoard(seed int64) [][]int {
 
 	finalBoard[2][2] = 0
 
-	return finalBoard
+	return finalBoard, finalSeed
 }
 
 func CheckHorizontalWin(board [][]int, numbers []int) bool {

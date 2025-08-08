@@ -7,8 +7,8 @@ import (
 )
 
 func TestGenerateRandomBoard(t *testing.T) {
-	boardA := GenerateBoard(0)
-	boardB := GenerateBoard(0)
+	boardA, _ := GenerateBoard(0)
+	boardB, _ := GenerateBoard(0)
 	equal := true
 
 	for j := range 5 {
@@ -29,8 +29,8 @@ func TestGenerateSeedBoard(t *testing.T) {
 	r := rand.New(source)
 	seed := r.Int63()
 
-	boardA := GenerateBoard(seed)
-	boardB := GenerateBoard(seed)
+	boardA, _ := GenerateBoard(seed)
+	boardB, _ := GenerateBoard(seed)
 	equal := true
 
 	for j := range 5 {
