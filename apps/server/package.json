@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "air",
     "test": "go test ./...",
-    "bench": "go test -bench=. -benchmem ./..."
+    "bench": "go test -bench=. -benchmem ./...",
+    "prep": "go mod tidy"
   },
   "keywords": [],
   "author": "",

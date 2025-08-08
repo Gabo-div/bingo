@@ -3,11 +3,13 @@ package auth
 import (
 	"context"
 	"errors"
-	"net/http"
 
+	"connectrpc.com/connect"
 	"github.com/lestrrat-go/jwx/v3/jwk"
 	"github.com/lestrrat-go/jwx/v3/jwt"
 )
+
+const tokenHeader = "Authorization"
 
 type User struct {
 	ID            string
@@ -23,25 +25,7 @@ type User struct {
 	UpdatedAt     string
 }
 
-func UserFromHeader(ctx context.Context, header http.Header) (User, error) {
-	keyset, err := jwk.Fetch(ctx, "http://localhost:3000/api/auth/jwks")
-
-	if err != nil {
-		return User{}, err
-	}
-
-	token, err := jwt.ParseHeader(header, "Authorization", jwt.WithKeySet(keyset))
-
-	if err != nil {
-		return User{}, err
-	}
-
-	UserID, exist := token.Subject()
-
-	if !exist {
-		return User{}, errors.New("missing user id")
-	}
-
+func userFromToken(userID string, token jwt.Token) User {
 	var name string
 	token.Get("name", &name)
 
@@ -73,7 +57,7 @@ func UserFromHeader(ctx context.Context, header http.Header) (User, error) {
 	token.Get("updatedAt", &updatedAt)
 
 	return User{
-		ID:            UserID,
+		ID:            userID,
 		Name:          name,
 		Email:         email,
 		EmailVerified: emailVerified,
@@ -84,5 +68,51 @@ func UserFromHeader(ctx context.Context, header http.Header) (User, error) {
 		Image:         image,
 		CreatedAt:     createdAt,
 		UpdatedAt:     updatedAt,
-	}, nil
+	}
+}
+
+func NewAuthInterceptor() connect.UnaryInterceptorFunc {
+	interceptor := func(next connect.UnaryFunc) connect.UnaryFunc {
+		return connect.UnaryFunc(func(
+			ctx context.Context,
+			req connect.AnyRequest,
+		) (connect.AnyResponse, error) {
+			if !req.Spec().IsClient && req.Header().Get(tokenHeader) == "" {
+				// Check token in handlers.
+				return nil, connect.NewError(
+					connect.CodeUnauthenticated,
+					errors.New("no token provided"),
+				)
+			}
+
+			keyset, err := jwk.Fetch(ctx, "http://localhost:3000/api/auth/jwks")
+			if err != nil {
+				return nil, connect.NewError(
+					connect.CodeUnauthenticated,
+					errors.New("no token provided"),
+				)
+			}
+
+			token, err := jwt.ParseHeader(req.Header(), "Authorization", jwt.WithKeySet(keyset))
+			if err != nil {
+				return nil, connect.NewError(
+					connect.CodeUnauthenticated,
+					errors.New("no token provided"),
+				)
+			}
+
+			userID, exist := token.Subject()
+			if !exist {
+				return nil, connect.NewError(
+					connect.CodeUnauthenticated,
+					errors.New("missing user id"),
+				)
+			}
+
+			userObj := userFromToken(userID, token)
+			newCtx := context.WithValue(ctx, "user", userObj)
+			return next(newCtx, req)
+		})
+	}
+	return connect.UnaryInterceptorFunc(interceptor)
 }
