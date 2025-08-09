@@ -7,8 +7,8 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 
-	"github.com/Gabo-div/bingo/apps/backend-main/internal/echo"
-	"github.com/Gabo-div/bingo/apps/backend-main/internal/user"
+	"github.com/Gabo-div/bingo/apps/backend-main/internal/handlers/echo"
+	"github.com/Gabo-div/bingo/apps/backend-main/internal/handlers/user"
 )
 
 func main() {
