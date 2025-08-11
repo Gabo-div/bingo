@@ -9,10 +9,10 @@ import (
 )
 
 type Account struct {
-	ID                    string
+	ID                    int64
 	AccountId             string
 	ProviderId            string
-	UserId                string
+	UserId                int64
 	AccessToken           pgtype.Text
 	RefreshToken          pgtype.Text
 	IdToken               pgtype.Text
@@ -24,36 +24,108 @@ type Account struct {
 	UpdatedAt             pgtype.Timestamp
 }
 
+type BcvPrice struct {
+	ID    int64
+	Price pgtype.Numeric
+	Data  pgtype.Timestamp
+}
+
+type Game struct {
+	ID         int64
+	Name       string
+	Start      pgtype.Timestamp
+	Open       bool
+	CardPrice  pgtype.Numeric
+	MaxPlayers int32
+	GameTypeId int64
+	CreatedAt  pgtype.Timestamp
+	UpdatedAt  pgtype.Timestamp
+}
+
+type GameBall struct {
+	ID        int64
+	GameId    int64
+	Number    int16
+	CreatedAt pgtype.Timestamp
+}
+
+type GameCard struct {
+	ID        int64
+	UserId    int64
+	GameId    int64
+	Winner    bool
+	Seed      int64
+	CreatedAt pgtype.Timestamp
+}
+
+type GameType struct {
+	ID   int64
+	Name string
+}
+
 type Jwk struct {
-	ID         string
+	ID         int64
 	PublicKey  string
 	PrivateKey string
 	CreatedAt  pgtype.Timestamp
 }
 
+type PaymentMethod struct {
+	ID           int64
+	UserId       int64
+	MethodTypeId int64
+	Data         []byte
+}
+
+type PaymentMethodType struct {
+	ID    int64
+	Name  string
+	Shape []byte
+}
+
 type Session struct {
-	ID        string
-	ExpiresAt pgtype.Timestamp
-	Token     string
-	CreatedAt pgtype.Timestamp
-	UpdatedAt pgtype.Timestamp
-	IpAddress pgtype.Text
-	UserAgent pgtype.Text
-	UserId    string
+	ID             int64
+	ExpiresAt      pgtype.Timestamp
+	Token          string
+	ImpersonatedBy pgtype.Text
+	CreatedAt      pgtype.Timestamp
+	UpdatedAt      pgtype.Timestamp
+	IpAddress      pgtype.Text
+	UserAgent      pgtype.Text
+	UserId         int64
+}
+
+type Transaction struct {
+	ID              int64
+	UserId          int64
+	PaymentMethodId int64
+	Amount          pgtype.Numeric
+	CreatedAt       pgtype.Timestamp
+}
+
+type TransactionRule struct {
+	ID              int64
+	MinDepositCoin  pgtype.Numeric
+	MinWithdrawCoin pgtype.Numeric
+	CreatedAt       pgtype.Timestamp
 }
 
 type User struct {
-	ID            string
+	ID            int64
 	Name          string
 	Email         string
 	EmailVerified bool
+	Role          pgtype.Text
+	Banned        pgtype.Bool
+	BanReason     pgtype.Text
+	BanExpires    pgtype.Timestamp
 	Image         pgtype.Text
 	CreatedAt     pgtype.Timestamp
 	UpdatedAt     pgtype.Timestamp
 }
 
 type Verification struct {
-	ID         string
+	ID         int64
 	Identifier string
 	Value      string
 	ExpiresAt  pgtype.Timestamp
