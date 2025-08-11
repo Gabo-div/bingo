@@ -52,6 +52,14 @@ Es necesario tener instalado lo siguiente en tu sistema:
     docker-compose up -d
     ```
 
+5.  **Crear la estructura y ejecutar migraciones de la base de datos:**
+    ```sh
+    cd packages/database
+    pnpm run migration:create
+    pnpm run migration:up
+    cd ../..
+    ```
+
 ### Ejecución
 
 Para iniciar todos los servicios en modo de desarrollo (con hot-reloading):
