@@ -15,8 +15,8 @@ import (
 func main() {
 	r := chi.NewRouter()
 
-	r.Use(middleware.Recoverer)
 	r.Use(middleware.Logger)
+	r.Use(middleware.Recoverer)
 
 	echo.Register(r)
 	game.Register(r)
