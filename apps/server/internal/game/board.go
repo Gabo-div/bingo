@@ -9,8 +9,8 @@ import (
 func GenerateBoard(seed int64) ([][]int, int64) {
 	finalSeed := seed
 
-	if seed == 0 {
-		seed = time.Now().UnixNano()
+	if finalSeed == 0 {
+		finalSeed = time.Now().UnixNano()
 	}
 
 	r := rand.New(rand.NewSource(finalSeed))
