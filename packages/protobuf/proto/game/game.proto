@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package game;
+
+option go_package = "github.com/Gabo-div/bingo/packages/protobuf/go/proto/game;game";
+
+service GameService {
+  rpc GenerateBoards(GenerateBoardsRequest) returns (GenerateBoardsResponse);
+}
+
+message GameBoard {
+  message Row {
+    repeated uint32 numbers = 1;
+  }
+
+  int64 seed = 1;
+  repeated Row cols = 2;
+}
+
+message GenerateBoardsRequest {
+  uint32 number = 1;
+}
+
+message GenerateBoardsResponse {
+  repeated GameBoard boards = 1;
+}

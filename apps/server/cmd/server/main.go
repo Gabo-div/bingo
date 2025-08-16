@@ -7,8 +7,9 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 
-	"github.com/Gabo-div/bingo/apps/backend-main/internal/handlers/echo"
-	"github.com/Gabo-div/bingo/apps/backend-main/internal/handlers/user"
+	"github.com/Gabo-div/bingo/apps/server/internal/handlers/echo"
+	"github.com/Gabo-div/bingo/apps/server/internal/handlers/game"
+	"github.com/Gabo-div/bingo/apps/server/internal/handlers/user"
 )
 
 func main() {
@@ -18,6 +19,7 @@ func main() {
 	r.Use(middleware.Logger)
 
 	echo.Register(r)
+	game.Register(r)
 	user.Register(r)
 
 	log.Printf("Running on localhost:3001")

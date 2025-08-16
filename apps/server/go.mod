@@ -1,4 +1,4 @@
-module github.com/Gabo-div/bingo/apps/backend-main
+module github.com/Gabo-div/bingo/apps/server
 
 go 1.24.5
 

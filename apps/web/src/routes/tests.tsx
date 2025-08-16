@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { AuthStatus } from "@/components/tests/AuthStatus"
 import { GoAPITest } from "@/components/tests/GoApiTest"
 import { GoAuthTest } from '@/components/tests/GoAuthTest'
+import { BingoCardTest } from '@/components/tests/BingoCardTest'
 
 export const Route = createFileRoute('/tests')({
   component: RouteComponent,
@@ -22,6 +23,7 @@ function RouteComponent() {
             <AuthStatus />
             <GoAPITest />
             <GoAuthTest />
+            <BingoCardTest />
           </div>
         </div>
       </div>

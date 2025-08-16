@@ -8,7 +8,7 @@ import (
 	"github.com/Gabo-div/bingo/packages/protobuf/go/proto/user/userconnect"
 	"github.com/go-chi/chi/v5"
 
-	"github.com/Gabo-div/bingo/apps/backend-main/internal/auth"
+	"github.com/Gabo-div/bingo/apps/server/internal/auth"
 )
 
 type server struct{}
