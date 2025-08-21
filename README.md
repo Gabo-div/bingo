@@ -26,6 +26,7 @@ Es necesario tener instalado lo siguiente en tu sistema:
 -   [**Go**](https://go.dev/doc/install)
 -   [**air**](https://github.com/air-verse/air) para live-reloading en Go.
 -   [**Docker**](https://www.docker.com/get-started)
+-   [**Goose**](https://github.com/pressly/goose)
 
 ### Pasos de Instalación
 
