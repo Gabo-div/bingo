@@ -3,6 +3,8 @@ import { AuthStatus } from "@/components/tests/AuthStatus"
 import { GoAPITest } from "@/components/tests/GoApiTest"
 import { GoAuthTest } from '@/components/tests/GoAuthTest'
 import { BingoCardTest } from '@/components/tests/BingoCardTest'
+import { ApiClient } from '@/components/tests/ApiClient'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export const Route = createFileRoute('/tests')({
   component: RouteComponent,
@@ -19,12 +21,23 @@ function RouteComponent() {
               Route to test Better Auth Server and Go gRPC Server
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            <AuthStatus />
-            <GoAPITest />
-            <GoAuthTest />
-            <BingoCardTest />
-          </div>
+          <Tabs defaultValue="account">
+            <TabsList className="w-full mb-4">
+              <TabsTrigger value="account">Tets</TabsTrigger>
+              <TabsTrigger value="password">gRPC Client</TabsTrigger>
+            </TabsList>
+            <TabsContent value="account">
+              <div className="grid gap-6 md:grid-cols-2">
+                <AuthStatus />
+                <GoAPITest />
+                <GoAuthTest />
+                <BingoCardTest />
+              </div>
+            </TabsContent>
+            <TabsContent value="password">
+              <ApiClient />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>
