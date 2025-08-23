@@ -6,7 +6,7 @@
     "dev": "air",
     "test": "go test ./...",
     "bench": "go test -bench=. -benchmem ./...",
-    "prep": "go mod tidy"
+    "prep": "go mod tidy; mkdir ./node_modules"
   },
   "keywords": [],
   "author": "",
