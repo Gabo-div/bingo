@@ -19,7 +19,7 @@ export default function MethodInputField(props: Props) {
 
 function MethodScalarField({ field, value, onChange }: Props) {
   return <div className="flex items-center gap-4">
-    <Label>{field.name}</Label>
+    <Label>{field.localName}</Label>
     <Input placeholder={field.name} value={value} onChange={(e) => onChange(e.currentTarget.value)} />
   </div>
 }

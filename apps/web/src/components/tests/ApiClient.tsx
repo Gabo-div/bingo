@@ -17,7 +17,6 @@ import * as z from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import MethodInputField from "./MethodInputField"
-import { Label } from "../ui/label"
 
 const formSchema = z.object({
   method: z.string(),
@@ -47,7 +46,7 @@ export function ApiClient() {
   }, [form, methodName])
 
   const onSubmit = async ({ timeout, inputs }: z.infer<typeof formSchema>) => {
-    if (!apiLoading && !selectedMethod) {
+    if (apiLoading || !selectedMethod) {
       return
     }
 
@@ -59,7 +58,27 @@ export function ApiClient() {
       const header = undefined
       const contextValues = undefined
 
-      const res = await transport.unary(selectedMethod as any, abortController.signal, Number(timeout), header, inputs, contextValues)
+      const parsedInputs: Record<string, any> = {}
+
+      Object.keys(inputs).forEach((fieldName) => {
+        const field = selectedMethod.input.fields.find((f) => f.localName === fieldName)
+
+        if (!field) {
+          return
+        }
+
+        let value = inputs[fieldName]
+
+        if (field.scalar === 8) {
+          value = value === "true"
+        }
+
+        parsedInputs[fieldName] = value
+      })
+
+      console.log("Sending: ", parsedInputs)
+
+      const res = await transport.unary(selectedMethod as any, abortController.signal, Number(timeout), header, parsedInputs, contextValues)
 
       setApiResponse(`✅ Success: ${JSON.stringify(res.message, null, 2)}`)
     } catch (error) {
@@ -144,9 +163,9 @@ export function ApiClient() {
             selectedMethod.input.fields.length ? (selectedMethod.input.fields.map((methodField) => (
               <MethodInputField key={methodField.toString()}
                 field={methodField}
-                value={form.watch(`inputs.${methodField.name}`)}
+                value={form.watch(`inputs.${methodField.localName}`)}
                 onChange={(value) => {
-                  form.setValue(`inputs.${methodField.name}`, value)
+                  form.setValue(`inputs.${methodField.localName}`, value)
                 }} />
             ))) : <div className="text-center w-full text-sm text-zinc-300 font-bold">No fields</div>
           }
