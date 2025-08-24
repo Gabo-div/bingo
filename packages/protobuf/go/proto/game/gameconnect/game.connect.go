@@ -36,11 +36,23 @@ const (
 	// GameServiceGenerateBoardsProcedure is the fully-qualified name of the GameService's
 	// GenerateBoards RPC.
 	GameServiceGenerateBoardsProcedure = "/game.GameService/GenerateBoards"
+	// GameServiceCreateGameProcedure is the fully-qualified name of the GameService's CreateGame RPC.
+	GameServiceCreateGameProcedure = "/game.GameService/CreateGame"
+	// GameServiceEditGameProcedure is the fully-qualified name of the GameService's EditGame RPC.
+	GameServiceEditGameProcedure = "/game.GameService/EditGame"
+	// GameServiceDeleteGameProcedure is the fully-qualified name of the GameService's DeleteGame RPC.
+	GameServiceDeleteGameProcedure = "/game.GameService/DeleteGame"
+	// GameServiceGetGameProcedure is the fully-qualified name of the GameService's GetGame RPC.
+	GameServiceGetGameProcedure = "/game.GameService/GetGame"
 )
 
 // GameServiceClient is a client for the game.GameService service.
 type GameServiceClient interface {
 	GenerateBoards(context.Context, *connect.Request[game.GenerateBoardsRequest]) (*connect.Response[game.GenerateBoardsResponse], error)
+	CreateGame(context.Context, *connect.Request[game.CreateGameRequest]) (*connect.Response[game.Game], error)
+	EditGame(context.Context, *connect.Request[game.EditGameRequest]) (*connect.Response[game.Game], error)
+	DeleteGame(context.Context, *connect.Request[game.DeleteGameRequest]) (*connect.Response[game.Game], error)
+	GetGame(context.Context, *connect.Request[game.GetGameRequest]) (*connect.Response[game.Game], error)
 }
 
 // NewGameServiceClient constructs a client for the game.GameService service. By default, it uses
@@ -60,12 +72,40 @@ func NewGameServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(gameServiceMethods.ByName("GenerateBoards")),
 			connect.WithClientOptions(opts...),
 		),
+		createGame: connect.NewClient[game.CreateGameRequest, game.Game](
+			httpClient,
+			baseURL+GameServiceCreateGameProcedure,
+			connect.WithSchema(gameServiceMethods.ByName("CreateGame")),
+			connect.WithClientOptions(opts...),
+		),
+		editGame: connect.NewClient[game.EditGameRequest, game.Game](
+			httpClient,
+			baseURL+GameServiceEditGameProcedure,
+			connect.WithSchema(gameServiceMethods.ByName("EditGame")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteGame: connect.NewClient[game.DeleteGameRequest, game.Game](
+			httpClient,
+			baseURL+GameServiceDeleteGameProcedure,
+			connect.WithSchema(gameServiceMethods.ByName("DeleteGame")),
+			connect.WithClientOptions(opts...),
+		),
+		getGame: connect.NewClient[game.GetGameRequest, game.Game](
+			httpClient,
+			baseURL+GameServiceGetGameProcedure,
+			connect.WithSchema(gameServiceMethods.ByName("GetGame")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // gameServiceClient implements GameServiceClient.
 type gameServiceClient struct {
 	generateBoards *connect.Client[game.GenerateBoardsRequest, game.GenerateBoardsResponse]
+	createGame     *connect.Client[game.CreateGameRequest, game.Game]
+	editGame       *connect.Client[game.EditGameRequest, game.Game]
+	deleteGame     *connect.Client[game.DeleteGameRequest, game.Game]
+	getGame        *connect.Client[game.GetGameRequest, game.Game]
 }
 
 // GenerateBoards calls game.GameService.GenerateBoards.
@@ -73,9 +113,33 @@ func (c *gameServiceClient) GenerateBoards(ctx context.Context, req *connect.Req
 	return c.generateBoards.CallUnary(ctx, req)
 }
 
+// CreateGame calls game.GameService.CreateGame.
+func (c *gameServiceClient) CreateGame(ctx context.Context, req *connect.Request[game.CreateGameRequest]) (*connect.Response[game.Game], error) {
+	return c.createGame.CallUnary(ctx, req)
+}
+
+// EditGame calls game.GameService.EditGame.
+func (c *gameServiceClient) EditGame(ctx context.Context, req *connect.Request[game.EditGameRequest]) (*connect.Response[game.Game], error) {
+	return c.editGame.CallUnary(ctx, req)
+}
+
+// DeleteGame calls game.GameService.DeleteGame.
+func (c *gameServiceClient) DeleteGame(ctx context.Context, req *connect.Request[game.DeleteGameRequest]) (*connect.Response[game.Game], error) {
+	return c.deleteGame.CallUnary(ctx, req)
+}
+
+// GetGame calls game.GameService.GetGame.
+func (c *gameServiceClient) GetGame(ctx context.Context, req *connect.Request[game.GetGameRequest]) (*connect.Response[game.Game], error) {
+	return c.getGame.CallUnary(ctx, req)
+}
+
 // GameServiceHandler is an implementation of the game.GameService service.
 type GameServiceHandler interface {
 	GenerateBoards(context.Context, *connect.Request[game.GenerateBoardsRequest]) (*connect.Response[game.GenerateBoardsResponse], error)
+	CreateGame(context.Context, *connect.Request[game.CreateGameRequest]) (*connect.Response[game.Game], error)
+	EditGame(context.Context, *connect.Request[game.EditGameRequest]) (*connect.Response[game.Game], error)
+	DeleteGame(context.Context, *connect.Request[game.DeleteGameRequest]) (*connect.Response[game.Game], error)
+	GetGame(context.Context, *connect.Request[game.GetGameRequest]) (*connect.Response[game.Game], error)
 }
 
 // NewGameServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -91,10 +155,42 @@ func NewGameServiceHandler(svc GameServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(gameServiceMethods.ByName("GenerateBoards")),
 		connect.WithHandlerOptions(opts...),
 	)
+	gameServiceCreateGameHandler := connect.NewUnaryHandler(
+		GameServiceCreateGameProcedure,
+		svc.CreateGame,
+		connect.WithSchema(gameServiceMethods.ByName("CreateGame")),
+		connect.WithHandlerOptions(opts...),
+	)
+	gameServiceEditGameHandler := connect.NewUnaryHandler(
+		GameServiceEditGameProcedure,
+		svc.EditGame,
+		connect.WithSchema(gameServiceMethods.ByName("EditGame")),
+		connect.WithHandlerOptions(opts...),
+	)
+	gameServiceDeleteGameHandler := connect.NewUnaryHandler(
+		GameServiceDeleteGameProcedure,
+		svc.DeleteGame,
+		connect.WithSchema(gameServiceMethods.ByName("DeleteGame")),
+		connect.WithHandlerOptions(opts...),
+	)
+	gameServiceGetGameHandler := connect.NewUnaryHandler(
+		GameServiceGetGameProcedure,
+		svc.GetGame,
+		connect.WithSchema(gameServiceMethods.ByName("GetGame")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/game.GameService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case GameServiceGenerateBoardsProcedure:
 			gameServiceGenerateBoardsHandler.ServeHTTP(w, r)
+		case GameServiceCreateGameProcedure:
+			gameServiceCreateGameHandler.ServeHTTP(w, r)
+		case GameServiceEditGameProcedure:
+			gameServiceEditGameHandler.ServeHTTP(w, r)
+		case GameServiceDeleteGameProcedure:
+			gameServiceDeleteGameHandler.ServeHTTP(w, r)
+		case GameServiceGetGameProcedure:
+			gameServiceGetGameHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -106,4 +202,20 @@ type UnimplementedGameServiceHandler struct{}
 
 func (UnimplementedGameServiceHandler) GenerateBoards(context.Context, *connect.Request[game.GenerateBoardsRequest]) (*connect.Response[game.GenerateBoardsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("game.GameService.GenerateBoards is not implemented"))
+}
+
+func (UnimplementedGameServiceHandler) CreateGame(context.Context, *connect.Request[game.CreateGameRequest]) (*connect.Response[game.Game], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("game.GameService.CreateGame is not implemented"))
+}
+
+func (UnimplementedGameServiceHandler) EditGame(context.Context, *connect.Request[game.EditGameRequest]) (*connect.Response[game.Game], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("game.GameService.EditGame is not implemented"))
+}
+
+func (UnimplementedGameServiceHandler) DeleteGame(context.Context, *connect.Request[game.DeleteGameRequest]) (*connect.Response[game.Game], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("game.GameService.DeleteGame is not implemented"))
+}
+
+func (UnimplementedGameServiceHandler) GetGame(context.Context, *connect.Request[game.GetGameRequest]) (*connect.Response[game.Game], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("game.GameService.GetGame is not implemented"))
 }

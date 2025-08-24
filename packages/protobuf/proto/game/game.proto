@@ -6,6 +6,10 @@ option go_package = "github.com/Gabo-div/bingo/packages/protobuf/go/proto/game;g
 
 service GameService {
   rpc GenerateBoards(GenerateBoardsRequest) returns (GenerateBoardsResponse);
+  rpc CreateGame(CreateGameRequest) returns (Game);
+  rpc EditGame(EditGameRequest) returns (Game);
+  rpc DeleteGame(DeleteGameRequest) returns (Game);
+  rpc GetGame(GetGameRequest) returns (Game);
 }
 
 message GameBoard {
@@ -23,4 +27,43 @@ message GenerateBoardsRequest {
 
 message GenerateBoardsResponse {
   repeated GameBoard boards = 1;
+}
+
+message Game {
+  int64 id = 1;
+	string name = 2;
+	string start  = 3;
+	bool open = 4;
+	float card_price= 5;
+	uint32 max_players = 6;
+	int64 game_type_id = 7;
+	string created_at = 8;
+	string updated_at  = 9;
+}
+
+message CreateGameRequest {
+	string name = 1;
+	string start  = 2;
+	bool open = 3;
+	float card_price= 4;
+	uint32 max_players = 5;
+	int64 game_type_id = 6;
+}
+
+message EditGameRequest {
+  int64 id = 1;
+	optional string name = 2;
+	optional string start  = 3;
+	optional bool open = 4;
+	optional float card_price= 5;
+	optional uint32 max_players = 6;
+	optional int64 game_type_id = 7;
+}
+
+message DeleteGameRequest {
+  int64 id = 1;
+}
+
+message GetGameRequest {
+  int64 id = 1;
 }

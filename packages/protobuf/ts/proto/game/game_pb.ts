@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/game/game.proto.
  */
 export const file_proto_game_game: GenFile = /*@__PURE__*/
-  fileDesc("ChVwcm90by9nYW1lL2dhbWUucHJvdG8SBGdhbWUiVAoJR2FtZUJvYXJkEgwKBHNlZWQYASABKAMSIQoEY29scxgCIAMoCzITLmdhbWUuR2FtZUJvYXJkLlJvdxoWCgNSb3cSDwoHbnVtYmVycxgBIAMoDSInChVHZW5lcmF0ZUJvYXJkc1JlcXVlc3QSDgoGbnVtYmVyGAEgASgNIjkKFkdlbmVyYXRlQm9hcmRzUmVzcG9uc2USHwoGYm9hcmRzGAEgAygLMg8uZ2FtZS5HYW1lQm9hcmQyWgoLR2FtZVNlcnZpY2USSwoOR2VuZXJhdGVCb2FyZHMSGy5nYW1lLkdlbmVyYXRlQm9hcmRzUmVxdWVzdBocLmdhbWUuR2VuZXJhdGVCb2FyZHNSZXNwb25zZUJAWj5naXRodWIuY29tL0dhYm8tZGl2L2JpbmdvL3BhY2thZ2VzL3Byb3RvYnVmL2dvL3Byb3RvL2dhbWU7Z2FtZWIGcHJvdG8z");
+  fileDesc("ChVwcm90by9nYW1lL2dhbWUucHJvdG8SBGdhbWUiVAoJR2FtZUJvYXJkEgwKBHNlZWQYASABKAMSIQoEY29scxgCIAMoCzITLmdhbWUuR2FtZUJvYXJkLlJvdxoWCgNSb3cSDwoHbnVtYmVycxgBIAMoDSInChVHZW5lcmF0ZUJvYXJkc1JlcXVlc3QSDgoGbnVtYmVyGAEgASgNIjkKFkdlbmVyYXRlQm9hcmRzUmVzcG9uc2USHwoGYm9hcmRzGAEgAygLMg8uZ2FtZS5HYW1lQm9hcmQipAEKBEdhbWUSCgoCaWQYASABKAMSDAoEbmFtZRgCIAEoCRINCgVzdGFydBgDIAEoCRIMCgRvcGVuGAQgASgIEhIKCmNhcmRfcHJpY2UYBSABKAISEwoLbWF4X3BsYXllcnMYBiABKA0SFAoMZ2FtZV90eXBlX2lkGAcgASgDEhIKCmNyZWF0ZWRfYXQYCCABKAkSEgoKdXBkYXRlZF9hdBgJIAEoCSJ9ChFDcmVhdGVHYW1lUmVxdWVzdBIMCgRuYW1lGAEgASgJEg0KBXN0YXJ0GAIgASgJEgwKBG9wZW4YAyABKAgSEgoKY2FyZF9wcmljZRgEIAEoAhITCgttYXhfcGxheWVycxgFIAEoDRIUCgxnYW1lX3R5cGVfaWQYBiABKAMi8QEKD0VkaXRHYW1lUmVxdWVzdBIKCgJpZBgBIAEoAxIRCgRuYW1lGAIgASgJSACIAQESEgoFc3RhcnQYAyABKAlIAYgBARIRCgRvcGVuGAQgASgISAKIAQESFwoKY2FyZF9wcmljZRgFIAEoAkgDiAEBEhgKC21heF9wbGF5ZXJzGAYgASgNSASIAQESGQoMZ2FtZV90eXBlX2lkGAcgASgDSAWIAQFCBwoFX25hbWVCCAoGX3N0YXJ0QgcKBV9vcGVuQg0KC19jYXJkX3ByaWNlQg4KDF9tYXhfcGxheWVyc0IPCg1fZ2FtZV90eXBlX2lkIh8KEURlbGV0ZUdhbWVSZXF1ZXN0EgoKAmlkGAEgASgDIhwKDkdldEdhbWVSZXF1ZXN0EgoKAmlkGAEgASgDMpwCCgtHYW1lU2VydmljZRJLCg5HZW5lcmF0ZUJvYXJkcxIbLmdhbWUuR2VuZXJhdGVCb2FyZHNSZXF1ZXN0GhwuZ2FtZS5HZW5lcmF0ZUJvYXJkc1Jlc3BvbnNlEjEKCkNyZWF0ZUdhbWUSFy5nYW1lLkNyZWF0ZUdhbWVSZXF1ZXN0GgouZ2FtZS5HYW1lEi0KCEVkaXRHYW1lEhUuZ2FtZS5FZGl0R2FtZVJlcXVlc3QaCi5nYW1lLkdhbWUSMQoKRGVsZXRlR2FtZRIXLmdhbWUuRGVsZXRlR2FtZVJlcXVlc3QaCi5nYW1lLkdhbWUSKwoHR2V0R2FtZRIULmdhbWUuR2V0R2FtZVJlcXVlc3QaCi5nYW1lLkdhbWVCQFo+Z2l0aHViLmNvbS9HYWJvLWRpdi9iaW5nby9wYWNrYWdlcy9wcm90b2J1Zi9nby9wcm90by9nYW1lO2dhbWViBnByb3RvMw");
 
 /**
  * @generated from message game.GameBoard
@@ -86,6 +86,186 @@ export const GenerateBoardsResponseSchema: GenMessage<GenerateBoardsResponse> = 
   messageDesc(file_proto_game_game, 2);
 
 /**
+ * @generated from message game.Game
+ */
+export type Game = Message<"game.Game"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string start = 3;
+   */
+  start: string;
+
+  /**
+   * @generated from field: bool open = 4;
+   */
+  open: boolean;
+
+  /**
+   * @generated from field: float card_price = 5;
+   */
+  cardPrice: number;
+
+  /**
+   * @generated from field: uint32 max_players = 6;
+   */
+  maxPlayers: number;
+
+  /**
+   * @generated from field: int64 game_type_id = 7;
+   */
+  gameTypeId: bigint;
+
+  /**
+   * @generated from field: string created_at = 8;
+   */
+  createdAt: string;
+
+  /**
+   * @generated from field: string updated_at = 9;
+   */
+  updatedAt: string;
+};
+
+/**
+ * Describes the message game.Game.
+ * Use `create(GameSchema)` to create a new message.
+ */
+export const GameSchema: GenMessage<Game> = /*@__PURE__*/
+  messageDesc(file_proto_game_game, 3);
+
+/**
+ * @generated from message game.CreateGameRequest
+ */
+export type CreateGameRequest = Message<"game.CreateGameRequest"> & {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string start = 2;
+   */
+  start: string;
+
+  /**
+   * @generated from field: bool open = 3;
+   */
+  open: boolean;
+
+  /**
+   * @generated from field: float card_price = 4;
+   */
+  cardPrice: number;
+
+  /**
+   * @generated from field: uint32 max_players = 5;
+   */
+  maxPlayers: number;
+
+  /**
+   * @generated from field: int64 game_type_id = 6;
+   */
+  gameTypeId: bigint;
+};
+
+/**
+ * Describes the message game.CreateGameRequest.
+ * Use `create(CreateGameRequestSchema)` to create a new message.
+ */
+export const CreateGameRequestSchema: GenMessage<CreateGameRequest> = /*@__PURE__*/
+  messageDesc(file_proto_game_game, 4);
+
+/**
+ * @generated from message game.EditGameRequest
+ */
+export type EditGameRequest = Message<"game.EditGameRequest"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: optional string name = 2;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: optional string start = 3;
+   */
+  start?: string;
+
+  /**
+   * @generated from field: optional bool open = 4;
+   */
+  open?: boolean;
+
+  /**
+   * @generated from field: optional float card_price = 5;
+   */
+  cardPrice?: number;
+
+  /**
+   * @generated from field: optional uint32 max_players = 6;
+   */
+  maxPlayers?: number;
+
+  /**
+   * @generated from field: optional int64 game_type_id = 7;
+   */
+  gameTypeId?: bigint;
+};
+
+/**
+ * Describes the message game.EditGameRequest.
+ * Use `create(EditGameRequestSchema)` to create a new message.
+ */
+export const EditGameRequestSchema: GenMessage<EditGameRequest> = /*@__PURE__*/
+  messageDesc(file_proto_game_game, 5);
+
+/**
+ * @generated from message game.DeleteGameRequest
+ */
+export type DeleteGameRequest = Message<"game.DeleteGameRequest"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+};
+
+/**
+ * Describes the message game.DeleteGameRequest.
+ * Use `create(DeleteGameRequestSchema)` to create a new message.
+ */
+export const DeleteGameRequestSchema: GenMessage<DeleteGameRequest> = /*@__PURE__*/
+  messageDesc(file_proto_game_game, 6);
+
+/**
+ * @generated from message game.GetGameRequest
+ */
+export type GetGameRequest = Message<"game.GetGameRequest"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+};
+
+/**
+ * Describes the message game.GetGameRequest.
+ * Use `create(GetGameRequestSchema)` to create a new message.
+ */
+export const GetGameRequestSchema: GenMessage<GetGameRequest> = /*@__PURE__*/
+  messageDesc(file_proto_game_game, 7);
+
+/**
  * @generated from service game.GameService
  */
 export const GameService: GenService<{
@@ -96,6 +276,38 @@ export const GameService: GenService<{
     methodKind: "unary";
     input: typeof GenerateBoardsRequestSchema;
     output: typeof GenerateBoardsResponseSchema;
+  },
+  /**
+   * @generated from rpc game.GameService.CreateGame
+   */
+  createGame: {
+    methodKind: "unary";
+    input: typeof CreateGameRequestSchema;
+    output: typeof GameSchema;
+  },
+  /**
+   * @generated from rpc game.GameService.EditGame
+   */
+  editGame: {
+    methodKind: "unary";
+    input: typeof EditGameRequestSchema;
+    output: typeof GameSchema;
+  },
+  /**
+   * @generated from rpc game.GameService.DeleteGame
+   */
+  deleteGame: {
+    methodKind: "unary";
+    input: typeof DeleteGameRequestSchema;
+    output: typeof GameSchema;
+  },
+  /**
+   * @generated from rpc game.GameService.GetGame
+   */
+  getGame: {
+    methodKind: "unary";
+    input: typeof GetGameRequestSchema;
+    output: typeof GameSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_game_game, 0);

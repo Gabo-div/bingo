@@ -10,10 +10,10 @@ import (
 )
 
 const getUserByID = `-- name: GetUserByID :one
-SELECT id, name, email, "emailVerified", image, "createdAt", "updatedAt" FROM "user" WHERE "id" = $1 LIMIT 1
+SELECT id, name, email, "emailVerified", role, banned, "banReason", "banExpires", image, "createdAt", "updatedAt" FROM "user" WHERE "id" = $1 LIMIT 1
 `
 
-func (q *Queries) GetUserByID(ctx context.Context, id string) (User, error) {
+func (q *Queries) GetUserByID(ctx context.Context, id int64) (User, error) {
 	row := q.db.QueryRow(ctx, getUserByID, id)
 	var i User
 	err := row.Scan(
@@ -21,6 +21,10 @@ func (q *Queries) GetUserByID(ctx context.Context, id string) (User, error) {
 		&i.Name,
 		&i.Email,
 		&i.EmailVerified,
+		&i.Role,
+		&i.Banned,
+		&i.BanReason,
+		&i.BanExpires,
 		&i.Image,
 		&i.CreatedAt,
 		&i.UpdatedAt,

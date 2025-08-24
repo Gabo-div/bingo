@@ -48,7 +48,7 @@ app.on(["POST"], "*", async (c) => {
   const res = await fetch(`http://localhost:3001${c.req.path}`, {
     method: c.req.method,
     headers,
-    body: await c.req.text(),
+    body: await c.req.arrayBuffer(),
   });
 
   return new Response(res.body, {

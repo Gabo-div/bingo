@@ -161,6 +161,378 @@ func (x *GenerateBoardsResponse) GetBoards() []*GameBoard {
 	return nil
 }
 
+type Game struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Start         string                 `protobuf:"bytes,3,opt,name=start,proto3" json:"start,omitempty"`
+	Open          bool                   `protobuf:"varint,4,opt,name=open,proto3" json:"open,omitempty"`
+	CardPrice     float32                `protobuf:"fixed32,5,opt,name=card_price,json=cardPrice,proto3" json:"card_price,omitempty"`
+	MaxPlayers    uint32                 `protobuf:"varint,6,opt,name=max_players,json=maxPlayers,proto3" json:"max_players,omitempty"`
+	GameTypeId    int64                  `protobuf:"varint,7,opt,name=game_type_id,json=gameTypeId,proto3" json:"game_type_id,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Game) Reset() {
+	*x = Game{}
+	mi := &file_proto_game_game_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Game) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Game) ProtoMessage() {}
+
+func (x *Game) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_game_game_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Game.ProtoReflect.Descriptor instead.
+func (*Game) Descriptor() ([]byte, []int) {
+	return file_proto_game_game_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Game) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Game) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Game) GetStart() string {
+	if x != nil {
+		return x.Start
+	}
+	return ""
+}
+
+func (x *Game) GetOpen() bool {
+	if x != nil {
+		return x.Open
+	}
+	return false
+}
+
+func (x *Game) GetCardPrice() float32 {
+	if x != nil {
+		return x.CardPrice
+	}
+	return 0
+}
+
+func (x *Game) GetMaxPlayers() uint32 {
+	if x != nil {
+		return x.MaxPlayers
+	}
+	return 0
+}
+
+func (x *Game) GetGameTypeId() int64 {
+	if x != nil {
+		return x.GameTypeId
+	}
+	return 0
+}
+
+func (x *Game) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *Game) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return ""
+}
+
+type CreateGameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Start         string                 `protobuf:"bytes,2,opt,name=start,proto3" json:"start,omitempty"`
+	Open          bool                   `protobuf:"varint,3,opt,name=open,proto3" json:"open,omitempty"`
+	CardPrice     float32                `protobuf:"fixed32,4,opt,name=card_price,json=cardPrice,proto3" json:"card_price,omitempty"`
+	MaxPlayers    uint32                 `protobuf:"varint,5,opt,name=max_players,json=maxPlayers,proto3" json:"max_players,omitempty"`
+	GameTypeId    int64                  `protobuf:"varint,6,opt,name=game_type_id,json=gameTypeId,proto3" json:"game_type_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateGameRequest) Reset() {
+	*x = CreateGameRequest{}
+	mi := &file_proto_game_game_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateGameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateGameRequest) ProtoMessage() {}
+
+func (x *CreateGameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_game_game_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateGameRequest.ProtoReflect.Descriptor instead.
+func (*CreateGameRequest) Descriptor() ([]byte, []int) {
+	return file_proto_game_game_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CreateGameRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateGameRequest) GetStart() string {
+	if x != nil {
+		return x.Start
+	}
+	return ""
+}
+
+func (x *CreateGameRequest) GetOpen() bool {
+	if x != nil {
+		return x.Open
+	}
+	return false
+}
+
+func (x *CreateGameRequest) GetCardPrice() float32 {
+	if x != nil {
+		return x.CardPrice
+	}
+	return 0
+}
+
+func (x *CreateGameRequest) GetMaxPlayers() uint32 {
+	if x != nil {
+		return x.MaxPlayers
+	}
+	return 0
+}
+
+func (x *CreateGameRequest) GetGameTypeId() int64 {
+	if x != nil {
+		return x.GameTypeId
+	}
+	return 0
+}
+
+type EditGameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	Start         *string                `protobuf:"bytes,3,opt,name=start,proto3,oneof" json:"start,omitempty"`
+	Open          *bool                  `protobuf:"varint,4,opt,name=open,proto3,oneof" json:"open,omitempty"`
+	CardPrice     *float32               `protobuf:"fixed32,5,opt,name=card_price,json=cardPrice,proto3,oneof" json:"card_price,omitempty"`
+	MaxPlayers    *uint32                `protobuf:"varint,6,opt,name=max_players,json=maxPlayers,proto3,oneof" json:"max_players,omitempty"`
+	GameTypeId    *int64                 `protobuf:"varint,7,opt,name=game_type_id,json=gameTypeId,proto3,oneof" json:"game_type_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EditGameRequest) Reset() {
+	*x = EditGameRequest{}
+	mi := &file_proto_game_game_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EditGameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EditGameRequest) ProtoMessage() {}
+
+func (x *EditGameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_game_game_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EditGameRequest.ProtoReflect.Descriptor instead.
+func (*EditGameRequest) Descriptor() ([]byte, []int) {
+	return file_proto_game_game_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *EditGameRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *EditGameRequest) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
+	}
+	return ""
+}
+
+func (x *EditGameRequest) GetStart() string {
+	if x != nil && x.Start != nil {
+		return *x.Start
+	}
+	return ""
+}
+
+func (x *EditGameRequest) GetOpen() bool {
+	if x != nil && x.Open != nil {
+		return *x.Open
+	}
+	return false
+}
+
+func (x *EditGameRequest) GetCardPrice() float32 {
+	if x != nil && x.CardPrice != nil {
+		return *x.CardPrice
+	}
+	return 0
+}
+
+func (x *EditGameRequest) GetMaxPlayers() uint32 {
+	if x != nil && x.MaxPlayers != nil {
+		return *x.MaxPlayers
+	}
+	return 0
+}
+
+func (x *EditGameRequest) GetGameTypeId() int64 {
+	if x != nil && x.GameTypeId != nil {
+		return *x.GameTypeId
+	}
+	return 0
+}
+
+type DeleteGameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteGameRequest) Reset() {
+	*x = DeleteGameRequest{}
+	mi := &file_proto_game_game_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteGameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteGameRequest) ProtoMessage() {}
+
+func (x *DeleteGameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_game_game_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteGameRequest.ProtoReflect.Descriptor instead.
+func (*DeleteGameRequest) Descriptor() ([]byte, []int) {
+	return file_proto_game_game_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *DeleteGameRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetGameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetGameRequest) Reset() {
+	*x = GetGameRequest{}
+	mi := &file_proto_game_game_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetGameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetGameRequest) ProtoMessage() {}
+
+func (x *GetGameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_game_game_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetGameRequest.ProtoReflect.Descriptor instead.
+func (*GetGameRequest) Descriptor() ([]byte, []int) {
+	return file_proto_game_game_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetGameRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
 type GameBoard_Row struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Numbers       []uint32               `protobuf:"varint,1,rep,packed,name=numbers,proto3" json:"numbers,omitempty"`
@@ -170,7 +542,7 @@ type GameBoard_Row struct {
 
 func (x *GameBoard_Row) Reset() {
 	*x = GameBoard_Row{}
-	mi := &file_proto_game_game_proto_msgTypes[3]
+	mi := &file_proto_game_game_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -182,7 +554,7 @@ func (x *GameBoard_Row) String() string {
 func (*GameBoard_Row) ProtoMessage() {}
 
 func (x *GameBoard_Row) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_game_game_proto_msgTypes[3]
+	mi := &file_proto_game_game_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -218,9 +590,65 @@ const file_proto_game_game_proto_rawDesc = "" +
 	"\x15GenerateBoardsRequest\x12\x16\n" +
 	"\x06number\x18\x01 \x01(\rR\x06number\"A\n" +
 	"\x16GenerateBoardsResponse\x12'\n" +
-	"\x06boards\x18\x01 \x03(\v2\x0f.game.GameBoardR\x06boards2Z\n" +
+	"\x06boards\x18\x01 \x03(\v2\x0f.game.GameBoardR\x06boards\"\xf4\x01\n" +
+	"\x04Game\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
+	"\x05start\x18\x03 \x01(\tR\x05start\x12\x12\n" +
+	"\x04open\x18\x04 \x01(\bR\x04open\x12\x1d\n" +
+	"\n" +
+	"card_price\x18\x05 \x01(\x02R\tcardPrice\x12\x1f\n" +
+	"\vmax_players\x18\x06 \x01(\rR\n" +
+	"maxPlayers\x12 \n" +
+	"\fgame_type_id\x18\a \x01(\x03R\n" +
+	"gameTypeId\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\b \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\t \x01(\tR\tupdatedAt\"\xb3\x01\n" +
+	"\x11CreateGameRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
+	"\x05start\x18\x02 \x01(\tR\x05start\x12\x12\n" +
+	"\x04open\x18\x03 \x01(\bR\x04open\x12\x1d\n" +
+	"\n" +
+	"card_price\x18\x04 \x01(\x02R\tcardPrice\x12\x1f\n" +
+	"\vmax_players\x18\x05 \x01(\rR\n" +
+	"maxPlayers\x12 \n" +
+	"\fgame_type_id\x18\x06 \x01(\x03R\n" +
+	"gameTypeId\"\xab\x02\n" +
+	"\x0fEditGameRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
+	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12\x19\n" +
+	"\x05start\x18\x03 \x01(\tH\x01R\x05start\x88\x01\x01\x12\x17\n" +
+	"\x04open\x18\x04 \x01(\bH\x02R\x04open\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"card_price\x18\x05 \x01(\x02H\x03R\tcardPrice\x88\x01\x01\x12$\n" +
+	"\vmax_players\x18\x06 \x01(\rH\x04R\n" +
+	"maxPlayers\x88\x01\x01\x12%\n" +
+	"\fgame_type_id\x18\a \x01(\x03H\x05R\n" +
+	"gameTypeId\x88\x01\x01B\a\n" +
+	"\x05_nameB\b\n" +
+	"\x06_startB\a\n" +
+	"\x05_openB\r\n" +
+	"\v_card_priceB\x0e\n" +
+	"\f_max_playersB\x0f\n" +
+	"\r_game_type_id\"#\n" +
+	"\x11DeleteGameRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\" \n" +
+	"\x0eGetGameRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id2\x9c\x02\n" +
 	"\vGameService\x12K\n" +
-	"\x0eGenerateBoards\x12\x1b.game.GenerateBoardsRequest\x1a\x1c.game.GenerateBoardsResponseB@Z>github.com/Gabo-div/bingo/packages/protobuf/go/proto/game;gameb\x06proto3"
+	"\x0eGenerateBoards\x12\x1b.game.GenerateBoardsRequest\x1a\x1c.game.GenerateBoardsResponse\x121\n" +
+	"\n" +
+	"CreateGame\x12\x17.game.CreateGameRequest\x1a\n" +
+	".game.Game\x12-\n" +
+	"\bEditGame\x12\x15.game.EditGameRequest\x1a\n" +
+	".game.Game\x121\n" +
+	"\n" +
+	"DeleteGame\x12\x17.game.DeleteGameRequest\x1a\n" +
+	".game.Game\x12+\n" +
+	"\aGetGame\x12\x14.game.GetGameRequest\x1a\n" +
+	".game.GameB@Z>github.com/Gabo-div/bingo/packages/protobuf/go/proto/game;gameb\x06proto3"
 
 var (
 	file_proto_game_game_proto_rawDescOnce sync.Once
@@ -234,20 +662,33 @@ func file_proto_game_game_proto_rawDescGZIP() []byte {
 	return file_proto_game_game_proto_rawDescData
 }
 
-var file_proto_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_proto_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_proto_game_game_proto_goTypes = []any{
 	(*GameBoard)(nil),              // 0: game.GameBoard
 	(*GenerateBoardsRequest)(nil),  // 1: game.GenerateBoardsRequest
 	(*GenerateBoardsResponse)(nil), // 2: game.GenerateBoardsResponse
-	(*GameBoard_Row)(nil),          // 3: game.GameBoard.Row
+	(*Game)(nil),                   // 3: game.Game
+	(*CreateGameRequest)(nil),      // 4: game.CreateGameRequest
+	(*EditGameRequest)(nil),        // 5: game.EditGameRequest
+	(*DeleteGameRequest)(nil),      // 6: game.DeleteGameRequest
+	(*GetGameRequest)(nil),         // 7: game.GetGameRequest
+	(*GameBoard_Row)(nil),          // 8: game.GameBoard.Row
 }
 var file_proto_game_game_proto_depIdxs = []int32{
-	3, // 0: game.GameBoard.cols:type_name -> game.GameBoard.Row
+	8, // 0: game.GameBoard.cols:type_name -> game.GameBoard.Row
 	0, // 1: game.GenerateBoardsResponse.boards:type_name -> game.GameBoard
 	1, // 2: game.GameService.GenerateBoards:input_type -> game.GenerateBoardsRequest
-	2, // 3: game.GameService.GenerateBoards:output_type -> game.GenerateBoardsResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
+	4, // 3: game.GameService.CreateGame:input_type -> game.CreateGameRequest
+	5, // 4: game.GameService.EditGame:input_type -> game.EditGameRequest
+	6, // 5: game.GameService.DeleteGame:input_type -> game.DeleteGameRequest
+	7, // 6: game.GameService.GetGame:input_type -> game.GetGameRequest
+	2, // 7: game.GameService.GenerateBoards:output_type -> game.GenerateBoardsResponse
+	3, // 8: game.GameService.CreateGame:output_type -> game.Game
+	3, // 9: game.GameService.EditGame:output_type -> game.Game
+	3, // 10: game.GameService.DeleteGame:output_type -> game.Game
+	3, // 11: game.GameService.GetGame:output_type -> game.Game
+	7, // [7:12] is the sub-list for method output_type
+	2, // [2:7] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -258,13 +699,14 @@ func file_proto_game_game_proto_init() {
 	if File_proto_game_game_proto != nil {
 		return
 	}
+	file_proto_game_game_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_game_game_proto_rawDesc), len(file_proto_game_game_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
