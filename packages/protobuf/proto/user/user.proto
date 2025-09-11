@@ -6,6 +6,8 @@ option go_package = "github.com/Gabo-div/bingo/packages/protobuf/go/proto/user;u
 
 service UserService {
   rpc GetUser(Empty) returns (User);
+  rpc AddPaymentMethod(PaymentMethodReq) returns (Empty);
+  rpc GetPaymentMethods(Empty) returns (PaymentMethodList);
 }
 
 message Empty {
@@ -23,4 +25,19 @@ message User {
   string image = 9;
   string createdAt = 10;
   string updatedAt = 11;
+}
+
+message PaymentMethodReq {
+  string methodType = 1;
+  bytes data = 2;
+}
+
+message PaymentMethodRes {
+  string id = 1;
+  string methodType = 2;
+  bytes data = 3;
+}
+
+message PaymentMethodList {
+  repeated PaymentMethodRes methods = 1;
 }

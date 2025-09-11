@@ -35,11 +35,19 @@ const (
 const (
 	// UserServiceGetUserProcedure is the fully-qualified name of the UserService's GetUser RPC.
 	UserServiceGetUserProcedure = "/user.UserService/GetUser"
+	// UserServiceAddPaymentMethodProcedure is the fully-qualified name of the UserService's
+	// AddPaymentMethod RPC.
+	UserServiceAddPaymentMethodProcedure = "/user.UserService/AddPaymentMethod"
+	// UserServiceGetPaymentMethodsProcedure is the fully-qualified name of the UserService's
+	// GetPaymentMethods RPC.
+	UserServiceGetPaymentMethodsProcedure = "/user.UserService/GetPaymentMethods"
 )
 
 // UserServiceClient is a client for the user.UserService service.
 type UserServiceClient interface {
 	GetUser(context.Context, *connect.Request[user.Empty]) (*connect.Response[user.User], error)
+	AddPaymentMethod(context.Context, *connect.Request[user.PaymentMethodReq]) (*connect.Response[user.Empty], error)
+	GetPaymentMethods(context.Context, *connect.Request[user.Empty]) (*connect.Response[user.PaymentMethodList], error)
 }
 
 // NewUserServiceClient constructs a client for the user.UserService service. By default, it uses
@@ -59,12 +67,26 @@ func NewUserServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(userServiceMethods.ByName("GetUser")),
 			connect.WithClientOptions(opts...),
 		),
+		addPaymentMethod: connect.NewClient[user.PaymentMethodReq, user.Empty](
+			httpClient,
+			baseURL+UserServiceAddPaymentMethodProcedure,
+			connect.WithSchema(userServiceMethods.ByName("AddPaymentMethod")),
+			connect.WithClientOptions(opts...),
+		),
+		getPaymentMethods: connect.NewClient[user.Empty, user.PaymentMethodList](
+			httpClient,
+			baseURL+UserServiceGetPaymentMethodsProcedure,
+			connect.WithSchema(userServiceMethods.ByName("GetPaymentMethods")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // userServiceClient implements UserServiceClient.
 type userServiceClient struct {
-	getUser *connect.Client[user.Empty, user.User]
+	getUser           *connect.Client[user.Empty, user.User]
+	addPaymentMethod  *connect.Client[user.PaymentMethodReq, user.Empty]
+	getPaymentMethods *connect.Client[user.Empty, user.PaymentMethodList]
 }
 
 // GetUser calls user.UserService.GetUser.
@@ -72,9 +94,21 @@ func (c *userServiceClient) GetUser(ctx context.Context, req *connect.Request[us
 	return c.getUser.CallUnary(ctx, req)
 }
 
+// AddPaymentMethod calls user.UserService.AddPaymentMethod.
+func (c *userServiceClient) AddPaymentMethod(ctx context.Context, req *connect.Request[user.PaymentMethodReq]) (*connect.Response[user.Empty], error) {
+	return c.addPaymentMethod.CallUnary(ctx, req)
+}
+
+// GetPaymentMethods calls user.UserService.GetPaymentMethods.
+func (c *userServiceClient) GetPaymentMethods(ctx context.Context, req *connect.Request[user.Empty]) (*connect.Response[user.PaymentMethodList], error) {
+	return c.getPaymentMethods.CallUnary(ctx, req)
+}
+
 // UserServiceHandler is an implementation of the user.UserService service.
 type UserServiceHandler interface {
 	GetUser(context.Context, *connect.Request[user.Empty]) (*connect.Response[user.User], error)
+	AddPaymentMethod(context.Context, *connect.Request[user.PaymentMethodReq]) (*connect.Response[user.Empty], error)
+	GetPaymentMethods(context.Context, *connect.Request[user.Empty]) (*connect.Response[user.PaymentMethodList], error)
 }
 
 // NewUserServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -90,10 +124,26 @@ func NewUserServiceHandler(svc UserServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(userServiceMethods.ByName("GetUser")),
 		connect.WithHandlerOptions(opts...),
 	)
+	userServiceAddPaymentMethodHandler := connect.NewUnaryHandler(
+		UserServiceAddPaymentMethodProcedure,
+		svc.AddPaymentMethod,
+		connect.WithSchema(userServiceMethods.ByName("AddPaymentMethod")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceGetPaymentMethodsHandler := connect.NewUnaryHandler(
+		UserServiceGetPaymentMethodsProcedure,
+		svc.GetPaymentMethods,
+		connect.WithSchema(userServiceMethods.ByName("GetPaymentMethods")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/user.UserService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case UserServiceGetUserProcedure:
 			userServiceGetUserHandler.ServeHTTP(w, r)
+		case UserServiceAddPaymentMethodProcedure:
+			userServiceAddPaymentMethodHandler.ServeHTTP(w, r)
+		case UserServiceGetPaymentMethodsProcedure:
+			userServiceGetPaymentMethodsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -105,4 +155,12 @@ type UnimplementedUserServiceHandler struct{}
 
 func (UnimplementedUserServiceHandler) GetUser(context.Context, *connect.Request[user.Empty]) (*connect.Response[user.User], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("user.UserService.GetUser is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) AddPaymentMethod(context.Context, *connect.Request[user.PaymentMethodReq]) (*connect.Response[user.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("user.UserService.AddPaymentMethod is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) GetPaymentMethods(context.Context, *connect.Request[user.Empty]) (*connect.Response[user.PaymentMethodList], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("user.UserService.GetPaymentMethods is not implemented"))
 }

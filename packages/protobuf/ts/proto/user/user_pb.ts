@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/user/user.proto.
  */
 export const file_proto_user_user: GenFile = /*@__PURE__*/
-  fileDesc("ChVwcm90by91c2VyL3VzZXIucHJvdG8SBHVzZXIiBwoFRW1wdHkiwAEKBFVzZXISCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRINCgVlbWFpbBgDIAEoCRIVCg1lbWFpbFZlcmlmaWVkGAQgASgIEgwKBHJvbGUYBSABKAkSDgoGYmFubmVkGAYgASgIEhEKCWJhblJlYXNvbhgHIAEoCRISCgpiYW5FeHBpcmVzGAggASgJEg0KBWltYWdlGAkgASgJEhEKCWNyZWF0ZWRBdBgKIAEoCRIRCgl1cGRhdGVkQXQYCyABKAkyMQoLVXNlclNlcnZpY2USIgoHR2V0VXNlchILLnVzZXIuRW1wdHkaCi51c2VyLlVzZXJCQFo+Z2l0aHViLmNvbS9HYWJvLWRpdi9iaW5nby9wYWNrYWdlcy9wcm90b2J1Zi9nby9wcm90by91c2VyO3VzZXJiBnByb3RvMw");
+  fileDesc("ChVwcm90by91c2VyL3VzZXIucHJvdG8SBHVzZXIiBwoFRW1wdHkiwAEKBFVzZXISCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRINCgVlbWFpbBgDIAEoCRIVCg1lbWFpbFZlcmlmaWVkGAQgASgIEgwKBHJvbGUYBSABKAkSDgoGYmFubmVkGAYgASgIEhEKCWJhblJlYXNvbhgHIAEoCRISCgpiYW5FeHBpcmVzGAggASgJEg0KBWltYWdlGAkgASgJEhEKCWNyZWF0ZWRBdBgKIAEoCRIRCgl1cGRhdGVkQXQYCyABKAkiNAoQUGF5bWVudE1ldGhvZFJlcRISCgptZXRob2RUeXBlGAEgASgJEgwKBGRhdGEYAiABKAwiQAoQUGF5bWVudE1ldGhvZFJlcxIKCgJpZBgBIAEoCRISCgptZXRob2RUeXBlGAIgASgJEgwKBGRhdGEYAyABKAwiPAoRUGF5bWVudE1ldGhvZExpc3QSJwoHbWV0aG9kcxgBIAMoCzIWLnVzZXIuUGF5bWVudE1ldGhvZFJlczKlAQoLVXNlclNlcnZpY2USIgoHR2V0VXNlchILLnVzZXIuRW1wdHkaCi51c2VyLlVzZXISNwoQQWRkUGF5bWVudE1ldGhvZBIWLnVzZXIuUGF5bWVudE1ldGhvZFJlcRoLLnVzZXIuRW1wdHkSOQoRR2V0UGF5bWVudE1ldGhvZHMSCy51c2VyLkVtcHR5GhcudXNlci5QYXltZW50TWV0aG9kTGlzdEJAWj5naXRodWIuY29tL0dhYm8tZGl2L2JpbmdvL3BhY2thZ2VzL3Byb3RvYnVmL2dvL3Byb3RvL3VzZXI7dXNlcmIGcHJvdG8z");
 
 /**
  * @generated from message user.Empty
@@ -93,6 +93,72 @@ export const UserSchema: GenMessage<User> = /*@__PURE__*/
   messageDesc(file_proto_user_user, 1);
 
 /**
+ * @generated from message user.PaymentMethodReq
+ */
+export type PaymentMethodReq = Message<"user.PaymentMethodReq"> & {
+  /**
+   * @generated from field: string methodType = 1;
+   */
+  methodType: string;
+
+  /**
+   * @generated from field: bytes data = 2;
+   */
+  data: Uint8Array;
+};
+
+/**
+ * Describes the message user.PaymentMethodReq.
+ * Use `create(PaymentMethodReqSchema)` to create a new message.
+ */
+export const PaymentMethodReqSchema: GenMessage<PaymentMethodReq> = /*@__PURE__*/
+  messageDesc(file_proto_user_user, 2);
+
+/**
+ * @generated from message user.PaymentMethodRes
+ */
+export type PaymentMethodRes = Message<"user.PaymentMethodRes"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: string methodType = 2;
+   */
+  methodType: string;
+
+  /**
+   * @generated from field: bytes data = 3;
+   */
+  data: Uint8Array;
+};
+
+/**
+ * Describes the message user.PaymentMethodRes.
+ * Use `create(PaymentMethodResSchema)` to create a new message.
+ */
+export const PaymentMethodResSchema: GenMessage<PaymentMethodRes> = /*@__PURE__*/
+  messageDesc(file_proto_user_user, 3);
+
+/**
+ * @generated from message user.PaymentMethodList
+ */
+export type PaymentMethodList = Message<"user.PaymentMethodList"> & {
+  /**
+   * @generated from field: repeated user.PaymentMethodRes methods = 1;
+   */
+  methods: PaymentMethodRes[];
+};
+
+/**
+ * Describes the message user.PaymentMethodList.
+ * Use `create(PaymentMethodListSchema)` to create a new message.
+ */
+export const PaymentMethodListSchema: GenMessage<PaymentMethodList> = /*@__PURE__*/
+  messageDesc(file_proto_user_user, 4);
+
+/**
  * @generated from service user.UserService
  */
 export const UserService: GenService<{
@@ -103,6 +169,22 @@ export const UserService: GenService<{
     methodKind: "unary";
     input: typeof EmptySchema;
     output: typeof UserSchema;
+  },
+  /**
+   * @generated from rpc user.UserService.AddPaymentMethod
+   */
+  addPaymentMethod: {
+    methodKind: "unary";
+    input: typeof PaymentMethodReqSchema;
+    output: typeof EmptySchema;
+  },
+  /**
+   * @generated from rpc user.UserService.GetPaymentMethods
+   */
+  getPaymentMethods: {
+    methodKind: "unary";
+    input: typeof EmptySchema;
+    output: typeof PaymentMethodListSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_user_user, 0);
