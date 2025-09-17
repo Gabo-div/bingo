@@ -2,12 +2,15 @@ syntax = "proto3";
 
 package user;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/Gabo-div/bingo/packages/protobuf/go/proto/user;user";
 
 service UserService {
   rpc GetUser(Empty) returns (User);
   rpc AddPaymentMethod(PaymentMethodReq) returns (Empty);
   rpc GetPaymentMethods(Empty) returns (PaymentMethodList);
+  rpc GetTransactionHistory(Empty) returns (TransactionList);
 }
 
 message Empty {
@@ -38,6 +41,17 @@ message PaymentMethodRes {
   bytes data = 3;
 }
 
+message Transaction {
+  string id = 1;
+  string methodId = 2;
+  double amount = 3;
+  google.protobuf.Timestamp datetime = 4;
+}
+
 message PaymentMethodList {
   repeated PaymentMethodRes methods = 1;
+}
+
+message TransactionList {
+  repeated Transaction history = 1;
 }

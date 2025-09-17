@@ -9,6 +9,7 @@ package user
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -293,6 +294,74 @@ func (x *PaymentMethodRes) GetData() []byte {
 	return nil
 }
 
+type Transaction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	MethodId      string                 `protobuf:"bytes,2,opt,name=methodId,proto3" json:"methodId,omitempty"`
+	Amount        float64                `protobuf:"fixed64,3,opt,name=amount,proto3" json:"amount,omitempty"`
+	Datetime      *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=datetime,proto3" json:"datetime,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Transaction) Reset() {
+	*x = Transaction{}
+	mi := &file_proto_user_user_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Transaction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Transaction) ProtoMessage() {}
+
+func (x *Transaction) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_user_user_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Transaction.ProtoReflect.Descriptor instead.
+func (*Transaction) Descriptor() ([]byte, []int) {
+	return file_proto_user_user_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *Transaction) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Transaction) GetMethodId() string {
+	if x != nil {
+		return x.MethodId
+	}
+	return ""
+}
+
+func (x *Transaction) GetAmount() float64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *Transaction) GetDatetime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Datetime
+	}
+	return nil
+}
+
 type PaymentMethodList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Methods       []*PaymentMethodRes    `protobuf:"bytes,1,rep,name=methods,proto3" json:"methods,omitempty"`
@@ -302,7 +371,7 @@ type PaymentMethodList struct {
 
 func (x *PaymentMethodList) Reset() {
 	*x = PaymentMethodList{}
-	mi := &file_proto_user_user_proto_msgTypes[4]
+	mi := &file_proto_user_user_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -314,7 +383,7 @@ func (x *PaymentMethodList) String() string {
 func (*PaymentMethodList) ProtoMessage() {}
 
 func (x *PaymentMethodList) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_user_user_proto_msgTypes[4]
+	mi := &file_proto_user_user_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -327,7 +396,7 @@ func (x *PaymentMethodList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaymentMethodList.ProtoReflect.Descriptor instead.
 func (*PaymentMethodList) Descriptor() ([]byte, []int) {
-	return file_proto_user_user_proto_rawDescGZIP(), []int{4}
+	return file_proto_user_user_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PaymentMethodList) GetMethods() []*PaymentMethodRes {
@@ -337,11 +406,55 @@ func (x *PaymentMethodList) GetMethods() []*PaymentMethodRes {
 	return nil
 }
 
+type TransactionList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	History       []*Transaction         `protobuf:"bytes,1,rep,name=history,proto3" json:"history,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TransactionList) Reset() {
+	*x = TransactionList{}
+	mi := &file_proto_user_user_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TransactionList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TransactionList) ProtoMessage() {}
+
+func (x *TransactionList) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_user_user_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TransactionList.ProtoReflect.Descriptor instead.
+func (*TransactionList) Descriptor() ([]byte, []int) {
+	return file_proto_user_user_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *TransactionList) GetHistory() []*Transaction {
+	if x != nil {
+		return x.History
+	}
+	return nil
+}
+
 var File_proto_user_user_proto protoreflect.FileDescriptor
 
 const file_proto_user_user_proto_rawDesc = "" +
 	"\n" +
-	"\x15proto/user/user.proto\x12\x04user\"\a\n" +
+	"\x15proto/user/user.proto\x12\x04user\x1a\x1fgoogle/protobuf/timestamp.proto\"\a\n" +
 	"\x05Empty\"\xa2\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
@@ -368,14 +481,22 @@ const file_proto_user_user_proto_rawDesc = "" +
 	"\n" +
 	"methodType\x18\x02 \x01(\tR\n" +
 	"methodType\x12\x12\n" +
-	"\x04data\x18\x03 \x01(\fR\x04data\"E\n" +
+	"\x04data\x18\x03 \x01(\fR\x04data\"\x89\x01\n" +
+	"\vTransaction\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
+	"\bmethodId\x18\x02 \x01(\tR\bmethodId\x12\x16\n" +
+	"\x06amount\x18\x03 \x01(\x01R\x06amount\x126\n" +
+	"\bdatetime\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\bdatetime\"E\n" +
 	"\x11PaymentMethodList\x120\n" +
-	"\amethods\x18\x01 \x03(\v2\x16.user.PaymentMethodResR\amethods2\xa5\x01\n" +
+	"\amethods\x18\x01 \x03(\v2\x16.user.PaymentMethodResR\amethods\">\n" +
+	"\x0fTransactionList\x12+\n" +
+	"\ahistory\x18\x01 \x03(\v2\x11.user.TransactionR\ahistory2\xe2\x01\n" +
 	"\vUserService\x12\"\n" +
 	"\aGetUser\x12\v.user.Empty\x1a\n" +
 	".user.User\x127\n" +
 	"\x10AddPaymentMethod\x12\x16.user.PaymentMethodReq\x1a\v.user.Empty\x129\n" +
-	"\x11GetPaymentMethods\x12\v.user.Empty\x1a\x17.user.PaymentMethodListB@Z>github.com/Gabo-div/bingo/packages/protobuf/go/proto/user;userb\x06proto3"
+	"\x11GetPaymentMethods\x12\v.user.Empty\x1a\x17.user.PaymentMethodList\x12;\n" +
+	"\x15GetTransactionHistory\x12\v.user.Empty\x1a\x15.user.TransactionListB@Z>github.com/Gabo-div/bingo/packages/protobuf/go/proto/user;userb\x06proto3"
 
 var (
 	file_proto_user_user_proto_rawDescOnce sync.Once
@@ -389,27 +510,34 @@ func file_proto_user_user_proto_rawDescGZIP() []byte {
 	return file_proto_user_user_proto_rawDescData
 }
 
-var file_proto_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_proto_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_proto_user_user_proto_goTypes = []any{
-	(*Empty)(nil),             // 0: user.Empty
-	(*User)(nil),              // 1: user.User
-	(*PaymentMethodReq)(nil),  // 2: user.PaymentMethodReq
-	(*PaymentMethodRes)(nil),  // 3: user.PaymentMethodRes
-	(*PaymentMethodList)(nil), // 4: user.PaymentMethodList
+	(*Empty)(nil),                 // 0: user.Empty
+	(*User)(nil),                  // 1: user.User
+	(*PaymentMethodReq)(nil),      // 2: user.PaymentMethodReq
+	(*PaymentMethodRes)(nil),      // 3: user.PaymentMethodRes
+	(*Transaction)(nil),           // 4: user.Transaction
+	(*PaymentMethodList)(nil),     // 5: user.PaymentMethodList
+	(*TransactionList)(nil),       // 6: user.TransactionList
+	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
 }
 var file_proto_user_user_proto_depIdxs = []int32{
-	3, // 0: user.PaymentMethodList.methods:type_name -> user.PaymentMethodRes
-	0, // 1: user.UserService.GetUser:input_type -> user.Empty
-	2, // 2: user.UserService.AddPaymentMethod:input_type -> user.PaymentMethodReq
-	0, // 3: user.UserService.GetPaymentMethods:input_type -> user.Empty
-	1, // 4: user.UserService.GetUser:output_type -> user.User
-	0, // 5: user.UserService.AddPaymentMethod:output_type -> user.Empty
-	4, // 6: user.UserService.GetPaymentMethods:output_type -> user.PaymentMethodList
-	4, // [4:7] is the sub-list for method output_type
-	1, // [1:4] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	7, // 0: user.Transaction.datetime:type_name -> google.protobuf.Timestamp
+	3, // 1: user.PaymentMethodList.methods:type_name -> user.PaymentMethodRes
+	4, // 2: user.TransactionList.history:type_name -> user.Transaction
+	0, // 3: user.UserService.GetUser:input_type -> user.Empty
+	2, // 4: user.UserService.AddPaymentMethod:input_type -> user.PaymentMethodReq
+	0, // 5: user.UserService.GetPaymentMethods:input_type -> user.Empty
+	0, // 6: user.UserService.GetTransactionHistory:input_type -> user.Empty
+	1, // 7: user.UserService.GetUser:output_type -> user.User
+	0, // 8: user.UserService.AddPaymentMethod:output_type -> user.Empty
+	5, // 9: user.UserService.GetPaymentMethods:output_type -> user.PaymentMethodList
+	6, // 10: user.UserService.GetTransactionHistory:output_type -> user.TransactionList
+	7, // [7:11] is the sub-list for method output_type
+	3, // [3:7] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_user_proto_init() }
@@ -423,7 +551,7 @@ func file_proto_user_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_user_user_proto_rawDesc), len(file_proto_user_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

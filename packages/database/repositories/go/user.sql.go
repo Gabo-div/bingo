@@ -53,6 +53,36 @@ func (q *Queries) GetPaymentMethodsByUserID(ctx context.Context, userid int64) (
 	return items, nil
 }
 
+const getTransactionHistoryByUserID = `-- name: GetTransactionHistoryByUserID :many
+SELECT id, "userId", "paymentMethodId", amount, "createdAt" FROM "transaction" WHERE "userId" = $1
+`
+
+func (q *Queries) GetTransactionHistoryByUserID(ctx context.Context, userid int64) ([]Transaction, error) {
+	rows, err := q.db.Query(ctx, getTransactionHistoryByUserID, userid)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Transaction
+	for rows.Next() {
+		var i Transaction
+		if err := rows.Scan(
+			&i.ID,
+			&i.UserId,
+			&i.PaymentMethodId,
+			&i.Amount,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getUserByID = `-- name: GetUserByID :one
 SELECT id, name, email, "emailVerified", role, banned, "banReason", "banExpires", image, "createdAt", "updatedAt" FROM "user" WHERE "id" = $1 LIMIT 1
 `

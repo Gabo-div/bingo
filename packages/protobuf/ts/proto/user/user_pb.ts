@@ -4,13 +4,15 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file proto/user/user.proto.
  */
 export const file_proto_user_user: GenFile = /*@__PURE__*/
-  fileDesc("ChVwcm90by91c2VyL3VzZXIucHJvdG8SBHVzZXIiBwoFRW1wdHkiwAEKBFVzZXISCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRINCgVlbWFpbBgDIAEoCRIVCg1lbWFpbFZlcmlmaWVkGAQgASgIEgwKBHJvbGUYBSABKAkSDgoGYmFubmVkGAYgASgIEhEKCWJhblJlYXNvbhgHIAEoCRISCgpiYW5FeHBpcmVzGAggASgJEg0KBWltYWdlGAkgASgJEhEKCWNyZWF0ZWRBdBgKIAEoCRIRCgl1cGRhdGVkQXQYCyABKAkiNAoQUGF5bWVudE1ldGhvZFJlcRISCgptZXRob2RUeXBlGAEgASgJEgwKBGRhdGEYAiABKAwiQAoQUGF5bWVudE1ldGhvZFJlcxIKCgJpZBgBIAEoCRISCgptZXRob2RUeXBlGAIgASgJEgwKBGRhdGEYAyABKAwiPAoRUGF5bWVudE1ldGhvZExpc3QSJwoHbWV0aG9kcxgBIAMoCzIWLnVzZXIuUGF5bWVudE1ldGhvZFJlczKlAQoLVXNlclNlcnZpY2USIgoHR2V0VXNlchILLnVzZXIuRW1wdHkaCi51c2VyLlVzZXISNwoQQWRkUGF5bWVudE1ldGhvZBIWLnVzZXIuUGF5bWVudE1ldGhvZFJlcRoLLnVzZXIuRW1wdHkSOQoRR2V0UGF5bWVudE1ldGhvZHMSCy51c2VyLkVtcHR5GhcudXNlci5QYXltZW50TWV0aG9kTGlzdEJAWj5naXRodWIuY29tL0dhYm8tZGl2L2JpbmdvL3BhY2thZ2VzL3Byb3RvYnVmL2dvL3Byb3RvL3VzZXI7dXNlcmIGcHJvdG8z");
+  fileDesc("ChVwcm90by91c2VyL3VzZXIucHJvdG8SBHVzZXIiBwoFRW1wdHkiwAEKBFVzZXISCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRINCgVlbWFpbBgDIAEoCRIVCg1lbWFpbFZlcmlmaWVkGAQgASgIEgwKBHJvbGUYBSABKAkSDgoGYmFubmVkGAYgASgIEhEKCWJhblJlYXNvbhgHIAEoCRISCgpiYW5FeHBpcmVzGAggASgJEg0KBWltYWdlGAkgASgJEhEKCWNyZWF0ZWRBdBgKIAEoCRIRCgl1cGRhdGVkQXQYCyABKAkiNAoQUGF5bWVudE1ldGhvZFJlcRISCgptZXRob2RUeXBlGAEgASgJEgwKBGRhdGEYAiABKAwiQAoQUGF5bWVudE1ldGhvZFJlcxIKCgJpZBgBIAEoCRISCgptZXRob2RUeXBlGAIgASgJEgwKBGRhdGEYAyABKAwiaQoLVHJhbnNhY3Rpb24SCgoCaWQYASABKAkSEAoIbWV0aG9kSWQYAiABKAkSDgoGYW1vdW50GAMgASgBEiwKCGRhdGV0aW1lGAQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCI8ChFQYXltZW50TWV0aG9kTGlzdBInCgdtZXRob2RzGAEgAygLMhYudXNlci5QYXltZW50TWV0aG9kUmVzIjUKD1RyYW5zYWN0aW9uTGlzdBIiCgdoaXN0b3J5GAEgAygLMhEudXNlci5UcmFuc2FjdGlvbjLiAQoLVXNlclNlcnZpY2USIgoHR2V0VXNlchILLnVzZXIuRW1wdHkaCi51c2VyLlVzZXISNwoQQWRkUGF5bWVudE1ldGhvZBIWLnVzZXIuUGF5bWVudE1ldGhvZFJlcRoLLnVzZXIuRW1wdHkSOQoRR2V0UGF5bWVudE1ldGhvZHMSCy51c2VyLkVtcHR5GhcudXNlci5QYXltZW50TWV0aG9kTGlzdBI7ChVHZXRUcmFuc2FjdGlvbkhpc3RvcnkSCy51c2VyLkVtcHR5GhUudXNlci5UcmFuc2FjdGlvbkxpc3RCQFo+Z2l0aHViLmNvbS9HYWJvLWRpdi9iaW5nby9wYWNrYWdlcy9wcm90b2J1Zi9nby9wcm90by91c2VyO3VzZXJiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message user.Empty
@@ -142,6 +144,38 @@ export const PaymentMethodResSchema: GenMessage<PaymentMethodRes> = /*@__PURE__*
   messageDesc(file_proto_user_user, 3);
 
 /**
+ * @generated from message user.Transaction
+ */
+export type Transaction = Message<"user.Transaction"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: string methodId = 2;
+   */
+  methodId: string;
+
+  /**
+   * @generated from field: double amount = 3;
+   */
+  amount: number;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp datetime = 4;
+   */
+  datetime?: Timestamp;
+};
+
+/**
+ * Describes the message user.Transaction.
+ * Use `create(TransactionSchema)` to create a new message.
+ */
+export const TransactionSchema: GenMessage<Transaction> = /*@__PURE__*/
+  messageDesc(file_proto_user_user, 4);
+
+/**
  * @generated from message user.PaymentMethodList
  */
 export type PaymentMethodList = Message<"user.PaymentMethodList"> & {
@@ -156,7 +190,24 @@ export type PaymentMethodList = Message<"user.PaymentMethodList"> & {
  * Use `create(PaymentMethodListSchema)` to create a new message.
  */
 export const PaymentMethodListSchema: GenMessage<PaymentMethodList> = /*@__PURE__*/
-  messageDesc(file_proto_user_user, 4);
+  messageDesc(file_proto_user_user, 5);
+
+/**
+ * @generated from message user.TransactionList
+ */
+export type TransactionList = Message<"user.TransactionList"> & {
+  /**
+   * @generated from field: repeated user.Transaction history = 1;
+   */
+  history: Transaction[];
+};
+
+/**
+ * Describes the message user.TransactionList.
+ * Use `create(TransactionListSchema)` to create a new message.
+ */
+export const TransactionListSchema: GenMessage<TransactionList> = /*@__PURE__*/
+  messageDesc(file_proto_user_user, 6);
 
 /**
  * @generated from service user.UserService
@@ -185,6 +236,14 @@ export const UserService: GenService<{
     methodKind: "unary";
     input: typeof EmptySchema;
     output: typeof PaymentMethodListSchema;
+  },
+  /**
+   * @generated from rpc user.UserService.GetTransactionHistory
+   */
+  getTransactionHistory: {
+    methodKind: "unary";
+    input: typeof EmptySchema;
+    output: typeof TransactionListSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_user_user, 0);

@@ -3,6 +3,7 @@ package user
 import (
 	"context"
 	"strconv"
+	"google.golang.org/protobuf/types/known/timestamppb"
 
 	"connectrpc.com/connect"
 	queries "github.com/Gabo-div/bingo/packages/database/repositories/go"
@@ -99,6 +100,50 @@ func (s *server) GetPaymentMethods(
 
 	res := connect.NewResponse(&user.PaymentMethodList{
 		Methods: methods,
+	})
+	return res, nil
+}
+
+
+// rpc GetTransactionHistory(Empty) returns (TransactionList);
+func (s *server) GetTransactionHistory(
+	ctx context.Context, req *connect.Request[user.Empty],
+) (*connect.Response[user.TransactionList], error) {
+	userData := ctx.Value("user").(auth.User)
+	userIDNum, err := strconv.ParseInt(userData.ID, 10, 64)
+	if err != nil {
+		res := connect.NewResponse(&user.TransactionList{})
+		return res, err
+	}
+
+	t_history, err := q.GetTransactionHistoryByUserID(ctx, userIDNum)
+	if err != nil {
+		res := connect.NewResponse(&user.TransactionList{})
+		return res, err
+	}
+
+	var history []*user.Transaction
+	for _, transaction := range t_history {
+		t_amount, err := transaction.Amount.Float64Value()
+		if err != nil {
+			res := connect.NewResponse(&user.TransactionList{})
+			return res, err
+		}
+		t_datetime, err := transaction.CreatedAt.TimestampValue()
+		if err != nil {
+			res := connect.NewResponse(&user.TransactionList{})
+			return res, err
+		}
+		history = append(history, &user.Transaction{
+			Id: strconv.FormatInt(transaction.ID, 10),
+			MethodId: strconv.FormatInt(transaction.PaymentMethodId, 10),
+			Amount: t_amount.Float64,
+			Datetime: timestamppb.New(t_datetime.Time),
+		})
+	}
+
+	res := connect.NewResponse(&user.TransactionList{
+		History: history,
 	})
 	return res, nil
 }

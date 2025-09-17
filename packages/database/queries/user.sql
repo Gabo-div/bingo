@@ -6,3 +6,6 @@ INSERT INTO "payment_method" ("userId", "methodTypeId", "data") VALUES ($1, $2, 
 
 -- name: GetPaymentMethodsByUserID :many
 SELECT * FROM "payment_method" WHERE "userId" = $1;
+
+-- name: GetTransactionHistoryByUserID :many
+SELECT * FROM "transaction" WHERE "userId" = $1;
